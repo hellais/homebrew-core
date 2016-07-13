@@ -1,8 +1,8 @@
 class Ooniprobe < Formula
   desc "Network interference detection tool"
   homepage "https://ooni.torproject.org/"
-  url "https://pypi.python.org/packages/93/39/e679fd5590243112cbec0ca0d98ba6b698e5df3000d26b0735820c1c1df0/ooniprobe-1.5.1.tar.gz"
-  sha256 "42095417b084eec3a0bf3b9746885e5292f620427f0e550b9c0cd0fe34e7c790"
+  url "https://pypi.python.org/packages/b4/6f/41d2e88cb59cfcbd501a00debf6fbc30d152f928d7e69da41ddfcf369870/ooniprobe-1.6.0.tar.gz"
+  sha256 "6ec8e5d3cf19b286b6863e2d19dac4244526db9757effde3b6cfda5f725da170"
 
   bottle do
     cellar :any
