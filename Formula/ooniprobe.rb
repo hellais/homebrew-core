@@ -167,14 +167,55 @@ class Ooniprobe < Formula
   end
 
   def post_install
+    require "open3"
     system bin/"ooniresources"
-    system bin/"oonideckgen", "-o", "#{HOMEBREW_PREFIX}/share/ooni/decks/"
+    Open3.popen3("#{bin}/oonideckgen", "-o",
+                 "#{HOMEBREW_PREFIX}/share/ooni/decks/") do |_, stdout, _|
+      current_deck = stdout.read.split("\n")[-1].split(" ")[-1]
+      ln_s current_deck, "#{HOMEBREW_PREFIX}/share/ooni/decks/current.deck"
+    end
   end
 
   def caveats; <<-EOS.undent
-    Decks are installed to #{HOMEBREW_PREFIX}/share/ooni.
+    Decks are installed to #{HOMEBREW_PREFIX}/share/ooni/decks/.
     EOS
   end
+
+  def plist; <<-EOS.undent
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+   <plist version="1.0">
+   <dict>
+     <key>Label</key>
+       <string>#{plist_name}</string>
+     <key>Program</key>
+       <string>#{opt_bin}/ooniprobe</string>
+     <key>ProgramArguments</key>
+     <array>
+       <string>-i</string>
+       <string>#{HOMEBREW_PREFIX}/share/ooni/decks/current.deck</string>
+     </array>
+     <key>RunAtLoad</key>
+       <false/>
+     <key>KeepAlive</key>
+       <false/>
+     <key>StandardErrorPath</key>
+       <string>/dev/null</string>
+     <key>StandardOutPath</key>
+       <string>/dev/null</string>
+     <key>StartCalendarInterval</key>
+     <dict>
+       <key>Hour</key>
+       <integer>00</integer>
+       <key>Minute</key>
+       <integer>00</integer>
+     </dict>
+   </dict>
+   </plist>
+   EOS
+  end
+
+  plist_options :startup => "true", :manual => "ooniprobe -i #{HOMEBREW_PREFIX}/share/ooni/decks/current.deck"
 
   test do
     (testpath/"hosts.txt").write "github.com:443\n"
