@@ -193,7 +193,7 @@ class Ooniprobe < Formula
      <key>ProgramArguments</key>
      <array>
        <string>-i</string>
-       <string>#{HOMEBREW_PREFIX}/share/ooni/decks/current.deck</string>
+       <string>#{opt_share}/ooni/decks/current.deck</string>
      </array>
      <key>RunAtLoad</key>
        <false/>
