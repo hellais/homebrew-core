@@ -76,7 +76,7 @@ class Ooniprobe < Formula
     EOS
   end
 
-  plist_options startup: "true", manual: "ooniprobe run"
+  plist_options startup: "true", manual: "ooniprobe --config \"#{etc}/ooniprobe-daily-config.json\" run"
 
   def plist
     <<~EOS
@@ -103,7 +103,7 @@ class Ooniprobe < Formula
         <string>run</string>
         <key>ProgramArguments</key>
         <array>
-            <string>--config="#{etc}/ooniprobe-daily-config.json"</string>
+            <string>--config "#{etc}/ooniprobe-daily-config.json"</string>
             <string>--batch</string>
             <string>run</string>
         </array>
