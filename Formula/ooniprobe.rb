@@ -20,7 +20,7 @@ class Ooniprobe < Formula
       prefix.install_metafiles
     end
 
-    (etc/"ooniprobe-daily-config.json").write <<-EOS.undent
+    (HOMEBREW_PREFIX/"etc/ooniprobe-daily-config.json").write <<-EOS.undent
     {
       "_version": 3,
       "_informed_consent": true,
@@ -76,7 +76,7 @@ class Ooniprobe < Formula
     EOS
   end
 
-  plist_options startup: "true", manual: "ooniprobe --config \"#{etc}/ooniprobe-daily-config.json\" run"
+  plist_options startup: "true", manual: "ooniprobe --config \"#{HOMEBREW_PREFIX}/etc/ooniprobe-daily-config.json\" run"
 
   def plist
     <<~EOS
@@ -103,7 +103,7 @@ class Ooniprobe < Formula
         <string>run</string>
         <key>ProgramArguments</key>
         <array>
-            <string>--config "#{etc}/ooniprobe-daily-config.json"</string>
+            <string>--config "#{HOMEBREW_PREFIX}/etc/ooniprobe-daily-config.json"</string>
             <string>--batch</string>
             <string>run</string>
         </array>
