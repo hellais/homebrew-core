@@ -8,7 +8,7 @@ class Ooniprobe < Formula
   license "BSD-2-Clause"
   revision 3
 
-  depends_on "go" => :build
+  depends_on "go@1.14" => :build
 
   def install
     ENV["GOPATH"] = HOMEBREW_CACHE/"go_cache"
