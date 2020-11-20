@@ -3,12 +3,12 @@ class Ooniprobe < Formula
 
   desc "Network interference detection tool"
   homepage "https://ooni.org/"
-  url "https://github.com/ooni/probe-cli/archive/v3.0.9.tar.gz"
-  sha256 "1910d8042bf92528ba233ef874e128e2960ab2e3e9b7081367529e7ca421f055"
+  url "https://github.com/ooni/probe-cli/archive/v3.0.10.tar.gz"
+  sha256 "2724199105b4708b82af456e882011bf1766849a1d72efb117343643230b8766"
   license "BSD-2-Clause"
   revision 3
 
-  depends_on "go" => :build
+  depends_on "go@1.14" => :build
 
   def install
     ENV["GOPATH"] = HOMEBREW_CACHE/"go_cache"
@@ -20,7 +20,7 @@ class Ooniprobe < Formula
       prefix.install_metafiles
     end
 
-    (HOMEBREW_PREFIX/"etc/ooniprobe-daily-config.json").write <<-EOS.undent
+    (pkgshare/"etc/ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -98,11 +98,9 @@ class Ooniprobe < Formula
           <string>#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
         </dict>
 
-        <key>Program</key>
-        <string>#{opt_bin}/ooniprobe</string>
-        <string>run</string>
         <key>ProgramArguments</key>
         <array>
+            <string>#{opt_bin}/ooniprobe</string>
             <string>--config "#{HOMEBREW_PREFIX}/etc/ooniprobe-daily-config.json"</string>
             <string>--batch</string>
             <string>run</string>
@@ -123,7 +121,7 @@ class Ooniprobe < Formula
   end
 
   test do
-    (testpath/"config.json").write <<-EOS.undent
+    (testpath/"config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
