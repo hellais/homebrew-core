@@ -152,9 +152,9 @@ class Ooniprobe < Formula
     <<~EOS
     By enabling the homebrew service you will not be shown the informed consent.
 
-    * OONI data is openly published and will include your network information.
-    * Anyone monitoring your internet activity (e.g. government or ISP) will see that you are running OONI Probe.
-    * You might test banned websites (but you can choose which sites to test).
+    • OONI data is openly published and will include your network information.
+    • Anyone monitoring your internet activity (e.g. government or ISP) will see that you are running OONI Probe.
+    • You might test banned websites (but you can choose which sites to test).
 
     To learn more about the risks see:
         https://ooni.org/about/risks
