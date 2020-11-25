@@ -97,7 +97,7 @@ class Ooniprobe < Formula
           <key>PATH</key>
           <string>#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
           <key>OONI_HOME</key>
-          <string>#{HOMEBREW_PREFIX}/var/ooniprobe</string>
+          <string>#{HOMEBREW_PREFIX}/var/lib/ooniprobe</string>
         </dict>
 
         <key>ProgramArguments</key>
