@@ -30,7 +30,7 @@ class Ooniprobe < Formula
         "upload_results": true
       },
       "nettests": {
-        "websites_url_limit": 100,
+        "websites_url_limit": 0,
         "websites_enabled_category_codes": [
           "ALDR",
           "ANON",
@@ -107,7 +107,7 @@ class Ooniprobe < Formula
         </array>
 
         <key>StartInterval</key>
-        <integer>3600</integer>
+        <integer>86400</integer>
 
         <key>StandardErrorPath</key>
           <string>/dev/null</string>
