@@ -15,7 +15,7 @@ class Ooniprobe < Formula
     (buildpath/"src/github.com/ooni/probe-cli").install buildpath.children
 
     cd "src/github.com/ooni/probe-cli" do
-      system "go", "build", "-o", bin/"ooniprobe", "./cmd/ooniprobe"
+      system "./build", "macos"
 
       prefix.install_metafiles
     end
@@ -70,7 +70,7 @@ class Ooniprobe < Formula
         "send_crash_reports": true,
         "collect_usage_stats": true,
         "collector_url": "",
-        "bouncer_url": "https://bouncer.ooni.io"
+        "bouncer_url": ""
       }
     }
     EOS
@@ -96,6 +96,8 @@ class Ooniprobe < Formula
         <dict>
           <key>PATH</key>
           <string>#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+          <key>OONI_HOME</key>
+          <string>#{HOMEBREW_PREFIX}/var/ooniprobe</string>
         </dict>
 
         <key>ProgramArguments</key>
@@ -145,4 +147,19 @@ class Ooniprobe < Formula
     ENV["OONI_HOME"] = "#{testpath}/ooni_home"
     system bin/"ooniprobe", "--config", testpath/"config.json", "run", "websites"
   end
+
+  def caveats
+    <<~EOS
+    By enabling the homebrew service you will not be shown the informed consent.
+
+    * OONI data is openly published and will include your network information.
+    * Anyone monitoring your internet activity (e.g. government or ISP) will see that you are running OONI Probe.
+    * You might test banned websites (but you can choose which sites to test).
+
+    To learn more about the risks see:
+        https://ooni.org/about/risks
+    EOS
+  end
+
+
 end
