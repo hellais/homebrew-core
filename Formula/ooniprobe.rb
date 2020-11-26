@@ -78,7 +78,7 @@ class Ooniprobe < Formula
     ooni_home.mkpath
   end
 
-  plist_options startup: "true", manual: "ooniprobe --config \"#{var}/ooniprobe-daily-config.json\" run"
+  plist_options startup: "true", manual: "ooniprobe run"
 
   def plist
     <<~EOS
