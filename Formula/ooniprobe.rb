@@ -25,7 +25,7 @@ class Ooniprobe < Formula
     ooni_home = Pathname.new "#{var}/ooniprobe"
     ooni_home.mkpath
 
-    (var/"ooniprobe/ooniprobe-daily-config.json").write <<~EOS
+    (prefix/"share/ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -105,7 +105,7 @@ class Ooniprobe < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/ooniprobe</string>
-            <string>--config=#{HOMEBREW_PREFIX}/var/ooniprobe/ooniprobe-daily-config.json</string>
+            <string>--config=#{prefix}/ooniprobe-daily-config.json</string>
             <string>--batch</string>
             <string>run</string>
         </array>
