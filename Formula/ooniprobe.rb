@@ -20,6 +20,8 @@ class Ooniprobe < Formula
       prefix.install_metafiles
     end
 
+    mkdir_p HOMEBREW_PREFIX"/var/lib/ooniprobe"
+
     (pkgshare/"etc/ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
