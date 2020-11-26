@@ -6,7 +6,7 @@ class Ooniprobe < Formula
   url "https://github.com/ooni/probe-cli/archive/v3.0.11.tar.gz"
   sha256 "870b8e2d801a5ae96a27fe0f7898f70ff2839ea12c9872e272b78f175e07deb2"
   license "BSD-2-Clause"
-  revision 3
+  revision 4
 
   depends_on "go@1.14" => :build
 
