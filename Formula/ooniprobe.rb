@@ -20,9 +20,7 @@ class Ooniprobe < Formula
       prefix.install_metafiles
     end
 
-    mkdir_p HOMEBREW_PREFIX"/var/lib/ooniprobe"
-
-    (pkgshare/"etc/ooniprobe-daily-config.json").write <<~EOS
+    (var/"ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -75,7 +73,12 @@ class Ooniprobe < Formula
     EOS
   end
 
-  plist_options startup: "true", manual: "ooniprobe --config \"#{HOMEBREW_PREFIX}/etc/ooniprobe-daily-config.json\" run"
+  def post_install
+    ooni_home = Pathname.new "#{var}/ooniprobe"
+    ooni_home.mkpath
+  end
+
+  plist_options startup: "true", manual: "ooniprobe --config \"#{var}/ooniprobe-daily-config.json\" run"
 
   def plist
     <<~EOS
@@ -96,7 +99,7 @@ class Ooniprobe < Formula
           <key>PATH</key>
           <string>#{HOMEBREW_PREFIX}/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
           <key>OONI_HOME</key>
-          <string>#{HOMEBREW_PREFIX}/var/lib/ooniprobe</string>
+          <string>#{HOMEBREW_PREFIX}/var/ooniprobe</string>
         </dict>
 
         <key>ProgramArguments</key>
@@ -162,6 +165,4 @@ class Ooniprobe < Formula
         https://ooni.org/about/risks
     EOS
   end
-
-
 end
