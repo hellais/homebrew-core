@@ -15,7 +15,7 @@ class Ooniprobe < Formula
     (buildpath/"src/github.com/ooni/probe-cli").install buildpath.children
 
     cd "src/github.com/ooni/probe-cli" do
-      system "./build", "macos"
+      system "./build.sh", "macos"
 
       prefix.install_metafiles
     end
