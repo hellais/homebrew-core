@@ -66,11 +66,8 @@ class Ooniprobe < Formula
         ]
       },
       "advanced": {
-        "use_domain_fronting": false,
         "send_crash_reports": true,
-        "collect_usage_stats": true,
-        "collector_url": "",
-        "bouncer_url": ""
+        "collect_usage_stats": true
       }
     }
     EOS
