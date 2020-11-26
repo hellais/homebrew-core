@@ -19,8 +19,13 @@ class Ooniprobe < Formula
       bin.install "CLI/darwin/amd64/ooniprobe"
       prefix.install_metafiles
     end
+  end
 
-    (pkgshare/"etc/ooniprobe-daily-config.json").write <<~EOS
+  def post_install
+    ooni_home = Pathname.new "#{var}/ooniprobe"
+    ooni_home.mkpath
+
+    (var/"ooniprobe/ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -73,11 +78,6 @@ class Ooniprobe < Formula
     EOS
   end
 
-  def post_install
-    ooni_home = Pathname.new "#{var}/ooniprobe"
-    ooni_home.mkpath
-  end
-
   plist_options startup: "true", manual: "ooniprobe run"
 
   def plist
@@ -105,7 +105,7 @@ class Ooniprobe < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/ooniprobe</string>
-            <string>--config=#{pkgshare}/etc/ooniprobe-daily-config.json</string>
+            <string>--config=#{HOMEBREW_PREFIX}/var/ooniprobe/ooniprobe-daily-config.json</string>
             <string>--batch</string>
             <string>run</string>
         </array>
