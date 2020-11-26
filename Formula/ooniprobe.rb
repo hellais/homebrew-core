@@ -15,12 +15,12 @@ class Ooniprobe < Formula
     (buildpath/"src/github.com/ooni/probe-cli").install buildpath.children
 
     cd "src/github.com/ooni/probe-cli" do
-      system "./build.sh", "macos"
-
+      system "./build.sh macos"
+      bin.install "CLI/darwin/amd64/ooniprobe"
       prefix.install_metafiles
     end
 
-    (var/"ooniprobe-daily-config.json").write <<~EOS
+    (pkgshare/"etc/ooniprobe-daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -105,7 +105,7 @@ class Ooniprobe < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/ooniprobe</string>
-            <string>--config "#{HOMEBREW_PREFIX}/etc/ooniprobe-daily-config.json"</string>
+            <string>--config=#{pkgshare}/etc/ooniprobe-daily-config.json</string>
             <string>--batch</string>
             <string>run</string>
         </array>
