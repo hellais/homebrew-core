@@ -114,9 +114,9 @@ class Ooniprobe < Formula
         <integer>86400</integer>
 
         <key>StandardErrorPath</key>
-          <string>/dev/null</string>
+          <string>/tmp/ooniprobe.err</string>
         <key>StandardOutPath</key>
-          <string>/dev/null</string>
+          <string>/tmp/ooniprobe.out</string>
         <key>WorkingDirectory</key>
           <string>#{opt_prefix}</string>
     </dict>
