@@ -105,7 +105,7 @@ class Ooniprobe < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/ooniprobe</string>
-            <string>--config=#{prefix}/ooniprobe-daily-config.json</string>
+            <string>--config=#{prefix}/share/ooniprobe-daily-config.json</string>
             <string>--batch</string>
             <string>run</string>
         </array>
