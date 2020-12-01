@@ -25,7 +25,7 @@ class Ooniprobe < Formula
     ooni_home = Pathname.new "#{var}/ooniprobe"
     ooni_home.mkpath
 
-    (prefix/"share/ooniprobe-daily-config.json").write <<~EOS
+    (prefix/"share/daily-config.json").write <<~EOS
     {
       "_version": 3,
       "_informed_consent": true,
@@ -78,7 +78,7 @@ class Ooniprobe < Formula
     EOS
   end
 
-  plist_options startup: "true", manual: "ooniprobe run"
+  plist_options manual: "ooniprobe run"
 
   def plist
     <<~EOS
@@ -105,20 +105,17 @@ class Ooniprobe < Formula
         <key>ProgramArguments</key>
         <array>
             <string>#{opt_bin}/ooniprobe</string>
-            <string>--config=#{prefix}/share/ooniprobe-daily-config.json</string>
-            <string>--batch</string>
+            <string>--config=#{prefix}/share/daily-config.json</string>
+            <string>--log-handler=syslog</string>
             <string>run</string>
+            <string>unattended</string>
         </array>
 
         <key>StartInterval</key>
         <integer>86400</integer>
 
-        <key>StandardErrorPath</key>
-          <string>/tmp/ooniprobe.err</string>
-        <key>StandardOutPath</key>
-          <string>/tmp/ooniprobe.out</string>
         <key>WorkingDirectory</key>
-          <string>#{opt_prefix}</string>
+        <string>#{HOMEBREW_PREFIX}/var/ooniprobe</string>
     </dict>
     </plist>
     EOS
