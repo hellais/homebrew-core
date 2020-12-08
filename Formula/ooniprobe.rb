@@ -3,10 +3,10 @@ class Ooniprobe < Formula
 
   desc "Network interference detection tool"
   homepage "https://ooni.org/"
-  url "https://github.com/ooni/probe-cli/archive/v3.0.11.tar.gz"
-  sha256 "870b8e2d801a5ae96a27fe0f7898f70ff2839ea12c9872e272b78f175e07deb2"
+  url "https://github.com/ooni/probe-cli/archive/v3.1.0.tar.gz"
+  sha256 "daa3878737df32565192ea2010151183a45125ee1efced1bfeef21be1e9a54c9"
   license "BSD-2-Clause"
-  revision 4
+  revision 1
 
   depends_on "go@1.14" => :build
 
